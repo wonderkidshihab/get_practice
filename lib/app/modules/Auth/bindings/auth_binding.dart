@@ -7,7 +7,6 @@ class AuthBinding extends Bindings {
   void dependencies() {
     Get.put<AuthController>(
       AuthController(),
-      permanent: true,
     );
   }
 }
