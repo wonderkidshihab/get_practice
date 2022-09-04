@@ -2,23 +2,22 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' hide Response;
 
 class ApiClient extends GetxService {
-  ApiClient._internal();
+  late Dio _dio;
 
-  static final ApiClient _instance = ApiClient._internal();
-
-  factory ApiClient() {
-    return _instance;
-  }
-  Dio dio = Dio();
-
-  init() async {
-    dio.options.baseUrl = 'https://fakestoreapi.com';
-    dio.options.connectTimeout = 15000;
-    dio.options.receiveTimeout = 15000;
+  @override
+  onInit() {
+    _dio = Dio();
+    _dio.options.baseUrl = 'https://fakestoreapi.com';
+    _dio.options.connectTimeout = 15000;
+    _dio.options.receiveTimeout = 15000;
+    _dio.options.headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    };
+    super.onInit();
   }
 
   Future<Response> get(String path, Map<String, dynamic>? params) async {
-    return await dio.get(path, queryParameters: params);
+    return await _dio.get(path, queryParameters: params);
   }
-  
 }

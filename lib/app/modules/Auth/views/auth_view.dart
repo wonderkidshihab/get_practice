@@ -18,70 +18,81 @@ class AuthView extends GetView<AuthController> {
       body: Column(
         children: [
           Expanded(
-            child: Form(
-              key: formKey,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 20.0),
-                    AppTextFormField(
-                      controller: controller.nameController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter your name';
-                        }
-                        return null;
-                      },
-                      labelText: 'Name',
-                      hintText: 'Enter your name',
-                      keyboardType: TextInputType.name,
-                      textInputAction: TextInputAction.next,
-                      inputFormatter: FilteringTextInputFormatter.allow(
-                        RegExp(r'[a-zA-Z ]'),
+            child: AutofillGroup(
+              child: Form(
+                key: formKey,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 20.0),
+                      AppTextFormField(
+                        controller: controller.nameController,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter your name';
+                          }
+                          return null;
+                        },
+                        labelText: 'Name',
+                        hintText: 'Enter your name',
+                        keyboardType: TextInputType.name,
+                        textInputAction: TextInputAction.next,
+                        inputFormatter: FilteringTextInputFormatter.allow(
+                          RegExp(r'[a-zA-Z ]'),
+                        ),
+                        autofillHints: const <String>[
+                          AutofillHints.name,
+                        ],
                       ),
-                    ),
-                    const SizedBox(height: 20.0),
-                    AppTextFormField(
-                      controller: controller.emailController,
-                      validator: (value) {
-                        if (RegExp(
-                                r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
-                            .hasMatch(value!)) {
-                          return null;
-                        }
-                        return 'Please enter a valid email';
-                      },
-                      labelText: 'Email',
-                      hintText: 'Enter your email',
-                      keyboardType: TextInputType.emailAddress,
-                      textInputAction: TextInputAction.next,
-                    ),
-                    const SizedBox(height: 20.0),
-                    AppTextFormField(
-                      controller: controller.passwordController,
-                      validator: (value) {
-                        if (value!.length >= 6) {
-                          return null;
-                        }
-                        return 'Password must be at least 6 characters';
-                      },
-                      labelText: 'Password',
-                      hintText: 'Enter your password',
-                      obscureText: true,
-                      keyboardType: TextInputType.visiblePassword,
-                      textInputAction: TextInputAction.done,
-                    ),
-                    const SizedBox(height: 20.0),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (formKey.currentState!.validate()) {
-                          controller.register();
-                        }
-                      },
-                      child: const Text('Register'),
-                    ),
-                  ],
+                      const SizedBox(height: 20.0),
+                      AppTextFormField(
+                        controller: controller.emailController,
+                        validator: (value) {
+                          if (RegExp(
+                                  r'^.+@[a-zA-Z]+\.{1}[a-zA-Z]+(\.{0,1}[a-zA-Z]+)$')
+                              .hasMatch(value!)) {
+                            return null;
+                          }
+                          return 'Please enter a valid email';
+                        },
+                        labelText: 'Email',
+                        hintText: 'Enter your email',
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
+                        autofillHints: const <String>[
+                          AutofillHints.email,
+                        ],
+                      ),
+                      const SizedBox(height: 20.0),
+                      AppTextFormField(
+                        controller: controller.passwordController,
+                        validator: (value) {
+                          if (value!.length >= 6) {
+                            return null;
+                          }
+                          return 'Password must be at least 6 characters';
+                        },
+                        labelText: 'Password',
+                        hintText: 'Enter your password',
+                        obscureText: true,
+                        keyboardType: TextInputType.visiblePassword,
+                        textInputAction: TextInputAction.done,
+                        autofillHints: const <String>[
+                          AutofillHints.password,
+                        ],
+                      ),
+                      const SizedBox(height: 20.0),
+                      ElevatedButton(
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            controller.register();
+                          }
+                        },
+                        child: const Text('Register'),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

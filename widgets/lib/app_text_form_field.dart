@@ -15,6 +15,7 @@ class AppTextFormField extends StatelessWidget {
   final Function(String)? onFieldSubmitted;
   final Function()? onEditingComplete;
   final TextInputFormatter? inputFormatter;
+  final List<String>? autofillHints;
   const AppTextFormField({
     Key? key,
     required this.controller,
@@ -30,6 +31,7 @@ class AppTextFormField extends StatelessWidget {
     this.onFieldSubmitted,
     this.onEditingComplete,
     this.inputFormatter,
+    this.autofillHints,
   }) : super(key: key);
 
   @override
@@ -50,6 +52,8 @@ class AppTextFormField extends StatelessWidget {
         hintText: hintText,
         border: const OutlineInputBorder(),
       ),
+      enableSuggestions: true,
+      autofillHints: autofillHints,
     );
   }
 }

@@ -9,12 +9,8 @@ class SplashView extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     print(controller.toString());
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('SplashView'),
-        centerTitle: true,
-      ),
-      body: const Center(
+    return const Scaffold(
+      body: Center(
         child: SpinKitChasingDots(
           color: Colors.blue,
           size: 50.0,
