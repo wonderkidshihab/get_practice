@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class DetailsController extends GetxController {
-  //TODO: Implement DetailsController
+class LoadingController extends GetxController {
+  //TODO: Implement LoadingController
 
   final count = 0.obs;
   @override
