@@ -15,6 +15,7 @@ dependencies:
     sdk: flutter
   widgets: 
     path: ./widgets
+  fluent_ui: ^3.12.0
 
 dev_dependencies: 
   flutter_lints: ^2.0.0
