@@ -1,6 +1,7 @@
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_practice/app/modules/home/views/cart_section_view.dart';
+import 'package:get_practice/app/modules/home/views/home_section_view.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -16,26 +17,34 @@ class HomeView extends GetView<HomeController> {
             selected: controller.selectedIndex.value,
             onChanged: (index) => controller.selectedIndex.value = index,
             items: <NavigationPaneItem>[
-              PaneItem(icon: const Icon(Icons.home), title: const Text('Home')),
               PaneItem(
-                  icon: const Icon(Icons.settings),
-                  title: const Text('Settings')),
+                icon: const Icon(FluentIcons.home),
+                title: const Text('Home'),
+              ),
               PaneItem(
-                  icon: const Icon(Icons.info), title: const Text('About')),
+                icon: const Icon(FluentIcons.shopping_cart),
+                title: const Text('Cart'),
+              ),
+              PaneItem(
+                icon: const Icon(FluentIcons.accounts),
+                title: const Text('Account'),
+              ),
             ],
           ),
           content: Obx(
             () => NavigationBody(
               index: controller.selectedIndex.value,
-              children: const [
-                Center(
-                  child: Text('Home'),
-                ),
-                Center(
-                  child: Text('Settings'),
-                ),
-                Center(
-                  child: Text('About'),
+              transitionBuilder: (child, animation) {
+                return FadeTransition(
+                  opacity: animation,
+                  child: child,
+                );
+              },
+              children: [
+                HomeSectionView(),
+                const CartSectionView(),
+                const Center(
+                  child: Text('Account'),
                 ),
               ],
             ),
