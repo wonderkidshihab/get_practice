@@ -10,18 +10,15 @@ class HomeSectionView extends GetView<HomeSectionController> {
   CartController cartController = Get.find();
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
-      controller: _scrollController,
-      child: Obx(
-        () => GridView.builder(
-          controller: _scrollController,
-          itemCount: controller.products.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3),
-          itemBuilder: (context, index) {
-            return ProductWidget(productModel: controller.products[index]);
-          },
-        ),
+    return Obx(
+      () => GridView.builder(
+        controller: _scrollController,
+        itemCount: controller.products.length,
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        itemBuilder: (context, index) {
+          return ProductWidget(productModel: controller.products[index]);
+        },
       ),
     );
   }

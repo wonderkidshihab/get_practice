@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_practice/app/data/Models/cart_product_model_dart.dart';
+import 'package:get_practice/app/modules/home/Widgets/cart_item_remove_dialog.dart';
 import 'package:get_practice/app/modules/home/controllers/cart_controller.dart';
 
 class CartProductWidget extends StatelessWidget {
@@ -63,8 +64,14 @@ class CartProductWidget extends StatelessWidget {
           ),
           const SizedBox(width: 20),
           IconButton(
-            onPressed: () {
-              cartController.removeItem(cartProductModel);
+            onPressed: () async {
+              var result = await Get.dialog(
+                const CartItemRemoveDialog(),
+                barrierDismissible: false,
+              );
+              if (result == true) {
+                cartController.removeItem(cartProductModel);
+              }
             },
             icon: const Icon(Icons.delete),
           ),

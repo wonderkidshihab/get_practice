@@ -16,6 +16,7 @@ dependencies:
   widgets: 
     path: ./widgets
   fluent_ui: ^3.12.0
+  flutter_staggered_animations: ^1.1.1
 
 dev_dependencies: 
   flutter_lints: ^2.0.0

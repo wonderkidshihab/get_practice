@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:get/get.dart';
 import 'package:get_practice/app/modules/home/controllers/cart_controller.dart';
 import 'package:get_practice/app/widgets/cart_product_widget.dart';
@@ -12,13 +13,24 @@ class CartSectionView extends GetView<CartController> {
         children: [
           Expanded(
             child: Obx(
-              () => ListView.builder(
-                itemCount: controller.cartItems.length,
-                itemBuilder: (context, index) {
-                  return CartProductWidget(
-                    cartProductModel: controller.cartItems[index],
-                  );
-                },
+              () => AnimationLimiter(
+                child: ListView.builder(
+                  itemBuilder: (context, index) {
+                    return AnimationConfiguration.staggeredList(
+                      position: index,
+                      duration: const Duration(milliseconds: 375),
+                      child: SlideAnimation(
+                        verticalOffset: 50.0,
+                        child: FadeInAnimation(
+                          child: CartProductWidget(
+                            cartProductModel: controller.cartItems[index],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  itemCount: controller.cartItems.length,
+                ),
               ),
             ),
           ),
