@@ -17,6 +17,10 @@ dependencies:
     path: ./widgets
   fluent_ui: ^3.12.0
   flutter_staggered_animations: ^1.1.1
+  usb_serial: ^0.4.0
+  quick_usb: ^0.4.0
+  libserialport: ^0.2.0+3
+  flutter_libserialport: ^0.2.3
 
 dev_dependencies: 
   flutter_lints: ^2.0.0

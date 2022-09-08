@@ -5,10 +5,12 @@ abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
   static const LOADING = _Paths.LOADING;
+  static const USBDEVICES = _Paths.USBDEVICES;
 }
 
 abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
   static const LOADING = '/loading';
+  static const USBDEVICES = '/usbdevices';
 }
